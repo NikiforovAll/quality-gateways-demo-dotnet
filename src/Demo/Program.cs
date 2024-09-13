@@ -18,14 +18,5 @@ foreach (string line in lines)
 // Counts the number of capital letters in a string
 static int CountCapitalLetters(string input)
 {
-    int count = 0;
-    foreach (char c in input)
-    {
-        if (char.IsUpper(c))
-        {
-            count++;
-        }
-    }
-
-    return count;
+    return input.Count(char.IsUpper);
 }
