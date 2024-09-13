@@ -1,4 +1,5 @@
-# Quality Gateways [![Build](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml)
+# Quality Gateways [![Build](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml) [![SonarCloud](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml/badge.svg)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml)
+
 
 Code quality is especially important in a team environment. The only way to achieve this is by enforcing quality gates (QG). Quality gates are automated checks that the code meet quality standards.
 
@@ -101,6 +102,8 @@ There are two other options to enforce coding style:
 
 From my experience, it can negatively impact the local build time, so I prefer to run the checks in the CI/CD pipeline.
 
+💡 The only exception to this is to use `<WarningsAsErrors>Nullable</WarningsAsErrors>` to treat nullable warnings as errors.
+
 ### Code Analysis Tools
 
 If you want to go further, you can use code analysis tools. The difference between code analysis tools and code analyzers is that code analysis tools are external tools that analyze your codebase and provide insights into the quality of your code.
@@ -110,6 +113,14 @@ Some of the popular tools are:
 * [SonarCloud](https://sonarcloud.io/) - SonarCloud is a cloud-based code analysis service that automatically detects bugs, vulnerabilities, and code smells in your code. It integrates with GitHub, Azure DevOps, and Bitbucket.
 * [CodeQL](https://securitylab.github.com/tools/codeql) - CodeQL is a semantic code analysis engine that allows you to write queries to find vulnerabilities in your code.
 * [NDepend](https://www.ndepend.com/) - NDepend is a static analysis tool that helps you manage complex .NET codebases and achieve high code quality.
+
+Here is an example of a SonarCloud report:
+
+![sonarcloud](./assets/sonar.png)
+
+💡 You can include `SonarCloud` check as part of your CI/CD. Use `/d:sonar.qualitygate.wait=true` option.
+
+👎 The downside of using different code analysis tools is that you have to configure them separately. You have to configure the rules, the severity levels, and the exclusions. Ideally, I want to have a single configuration file (aka source of truth) that configures all the code quality checks.
 
 ## Running the demo
 

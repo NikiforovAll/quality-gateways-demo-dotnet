@@ -7,6 +7,12 @@ var lines = new List<string>();
 while (!reader.EndOfStream)
 {
     var line = await reader.ReadLineAsync();
+
+    if (string.IsNullOrWhiteSpace(line))
+    {
+        continue;
+    }
+
     lines.Add($"{Guid.NewGuid()} - {line}[{CountCapitalLetters(line)}]");
 }
 
