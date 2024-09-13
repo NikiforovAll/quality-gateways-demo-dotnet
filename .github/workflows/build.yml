@@ -7,14 +7,11 @@ on:
 
 env:
   DOTNET_VERSION: "8.0.*" # The .NET SDK version to use
+  DOTNET_CLI_TELEMETRY_OPTOUT
 
 jobs:
-  build:
-    name: build-${{matrix.os}}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+  setup:
+    name: Setup
 
     steps:
       - uses: actions/checkout@v3
@@ -29,9 +26,39 @@ jobs:
       - name: Configure Husky
         run: dotnet husky install
 
-      - name: Quality Gates
-        run: dotnet husky run
+  format:
+      name: Format
+      needs: setup
+      steps:
+        - name: Run Format Task
+          run: dotnet husky run --name format
 
+  style:
+    name: Style
+    needs: setup
+    steps:
+      - name: Run Style Task
+        run: dotnet husky run --name style
+
+  analyzers:
+    name: Analyzers
+    needs: setup
+    steps:
+      - name: Run Analyzers Task
+        run: dotnet husky run --name analyzers
+
+  spelling:
+    name: Spelling
+    needs: setup
+    steps:
+      - name: Run Spelling Task
+        run: dotnet husky run --name spelling
+
+  build:
+    name: build-${{matrix.os}}
+    needs: [format, style, analyzers, spelling]
+
+    steps:
       - name: Install Dependencies
         run: dotnet restore
 
