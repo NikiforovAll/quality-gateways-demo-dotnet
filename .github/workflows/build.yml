@@ -11,7 +11,7 @@ env:
 jobs:
   setup:
     name: Setup
-
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET Core
@@ -26,14 +26,16 @@ jobs:
         run: dotnet husky install
 
   format:
-      name: Format
-      needs: setup
-      steps:
-        - name: Run Format Task
-          run: dotnet husky run --name format
+    name: Format
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Run Format Task
+        run: dotnet husky run --name format
 
   style:
     name: Style
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - name: Run Style Task
@@ -41,6 +43,7 @@ jobs:
 
   analyzers:
     name: Analyzers
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - name: Run Analyzers Task
@@ -48,15 +51,16 @@ jobs:
 
   spelling:
     name: Spelling
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - name: Run Spelling Task
         run: dotnet husky run --name spelling
 
   build:
-    name: build-${{matrix.os}}
+    name: build
+    runs-on: ubuntu-latest
     needs: [format, style, analyzers, spelling]
-
     steps:
       - name: Install Dependencies
         run: dotnet restore
