@@ -1,4 +1,7 @@
-# Quality Gateways
+# Quality Gateways [![Build](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml)
+
+
+[![GitHub Actions Build History](https://buildstats.info/github/chart/nikiforovall/quality-gateways-demo-dotnet?branch=main&includeBuildsFromPullRequest=false)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions)
 
 Code quality is especially important in a team environment. The only way to achieve this is by enforcing quality gates (QG). Quality gates are automated checks that the code meet quality standards.
 

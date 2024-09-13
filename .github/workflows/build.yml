@@ -26,6 +26,9 @@ jobs:
       - name: Install Tools
         run: dotnet tool restore
 
+      - name: Configure Husky
+        run: dotnet husky install
+
       - name: Quality Gates
         run: dotnet husky run
 
