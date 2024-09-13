@@ -1,8 +1,5 @@
 # Quality Gateways [![Build](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml)
 
-
-[![GitHub Actions Build History](https://buildstats.info/github/chart/nikiforovall/quality-gateways-demo-dotnet?branch=main&includeBuildsFromPullRequest=false)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions)
-
 Code quality is especially important in a team environment. The only way to achieve this is by enforcing quality gates (QG). Quality gates are automated checks that the code meet quality standards.
 
 The are two main aspects of enforcing quality gates:
@@ -104,6 +101,43 @@ dotnet husky run --name analyzers
 ```bash
 dotnet husky run --name spelling
 ```
+
+Now, assume the developer ignores the warning and commits the code and creates a pull request. The CI/CD pipeline will run the same checks, and if any of the checks fail, the pipeline will fail.
+
+💡 I configured parallel execution for code quality gateways, which helps to receive feedback faster.
+
+![ci-cd-failed](./assets/ci-cd-failed.png)
+
+Now let's fix the issues and run the checks again.
+
+```bash
+❯ dotnet husky run
+[Husky] 🚀 Loading tasks ...
+--------------------------------------------------
+[Husky] ⚡ Preparing task 'format'
+[Husky] ⌛ Executing task 'format' ...
+Formatted 1 files in 952ms.
+[Husky]  ✔ Successfully executed in 2,307ms
+--------------------------------------------------
+[Husky] ⚡ Preparing task 'style'
+[Husky] ⌛ Executing task 'style' ...
+[Husky]  ✔ Successfully executed in 15,299ms
+--------------------------------------------------
+[Husky] ⚡ Preparing task 'analyzers'
+[Husky] ⌛ Executing task 'analyzers' ...
+[Husky]  ✔ Successfully executed in 12,293ms
+--------------------------------------------------
+[Husky] ⚡ Preparing task 'spelling'
+[Husky] ⌛ Executing task 'spelling' ...
+[Husky]  ✔ Successfully executed in 2,802ms
+--------------------------------------------------
+```
+
+
+## TODO
+
+* Add section about editorconfig and how it helps with style consistency and allows to configure analyzers.
+* Add SonarCloud + CI/CD
 
 
 ## References
