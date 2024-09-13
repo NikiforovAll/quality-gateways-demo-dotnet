@@ -135,6 +135,10 @@ Formatted 1 files in 952ms.
 
 💡 Note: the pre-commit hook takes about 30 seconds. This is already too long, so we might consider removing something from the git hook and relying only on the CI/CD.
 
+Now we commit the changes and push them to the repository. The CI/CD pipeline will run the checks again, and if all checks pass, the pipeline will succeed.
+
+![ci-cd-success](./assets/ci-cd-success.png)
+
 
 ## TODO
 
