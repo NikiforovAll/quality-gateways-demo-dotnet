@@ -133,6 +133,8 @@ Formatted 1 files in 952ms.
 --------------------------------------------------
 ```
 
+💡 Note: the pre-commit hook takes about 30 seconds. This is already too long, so we might consider removing something from the git hook and relying only on the CI/CD.
+
 
 ## TODO
 
