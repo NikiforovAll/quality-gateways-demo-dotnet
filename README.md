@@ -1,4 +1,4 @@
-# Quality Gateways [![Build](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml) [![SonarCloud](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml/badge.svg)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml)
+# A Tyrant Guide to Code Quality Gateways featuring CSharpier, Husky.NET, SonarCloud [![Build](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml) [![SonarCloud](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml/badge.svg)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml)[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NikiforovAll_quality-gateways-demo-dotnet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NikiforovAll_quality-gateways-demo-dotnet)
 
 
 Code quality is especially important in a team environment. The only way to achieve this is by enforcing quality gates (QG). Quality gates are automated checks that the code meet quality standards.
@@ -118,7 +118,11 @@ Here is an example of a SonarCloud report:
 
 ![sonarcloud](./assets/sonar.png)
 
-💡 You can include `SonarCloud` check as part of your CI/CD. Use `/d:sonar.qualitygate.wait=true` option.
+💡 You can include `SonarCloud` check as part of a CI/CD pipeline. Use `/d:sonar.qualitygate.wait=true` option. Otherwise, the CI/CD pipeline will not wait for the SonarCloud analysis to finish.
+
+By default, Sonar configures pretty strict rules called "Sonar Way":
+
+![sonar-way](./assets/sonar-way.png)
 
 👎 The downside of using different code analysis tools is that you have to configure them separately. You have to configure the rules, the severity levels, and the exclusions. Ideally, I want to have a single configuration file (aka source of truth) that configures all the code quality checks.
 
