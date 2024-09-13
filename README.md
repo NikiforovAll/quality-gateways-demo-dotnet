@@ -1,11 +1,11 @@
-# A Tyrant Guide to Code Quality Gateways featuring CSharpier, Husky.NET, SonarCloud [![Build](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml) [![SonarCloud](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml/badge.svg)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml)[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NikiforovAll_quality-gateways-demo-dotnet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NikiforovAll_quality-gateways-demo-dotnet)
+# A Tyrant Guide to Code Quality Gates featuring CSharpier, Husky.NET, and SonarCloud [![Build](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/build.yml) [![SonarCloud](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml/badge.svg)](https://github.com/NikiforovAll/quality-gateways-demo-dotnet/actions/workflows/sonar.yml)[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NikiforovAll_quality-gateways-demo-dotnet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NikiforovAll_quality-gateways-demo-dotnet)
 
 
-Code quality is especially important in a team environment. The only way to achieve this is by enforcing quality gates (QG). Quality gates are automated checks that the code meet quality standards.
+> Code quality is especially important in a team environment. The only way to achieve this is by enforcing quality gates. Quality gates are automated checks that the code meet quality standards.
 
 There are two main aspects of enforcing quality gates:
 1. Make sure that code quality is enforced, so it is not possible to merge code that does not meet the quality standards.
-2. Keep the feedback loop as short as possible, so developers can fix the issues as soon as possible. Developers will rebel against QG if they impact their productivity and developer experience (DevEX).
+2. Keep the feedback loop as short as possible, so developers can fix the issues as soon as possible. Beware, developers will rebel against quality gates if it impacts their productivity and developer experience (DevEX).
 
 Quality Attributes:
 
@@ -33,9 +33,10 @@ Quality Attributes:
 1. IDE/Linter
 2. Pre-commit hooks
 3. CI/CD
-    1. Automated tests
-    2. Code quality checks
-    3. Security checks
+    1. Build
+    2. Automated tests (unit, integration, end-to-end, performance, etc.)
+    3. Code quality checks
+    4. Security checks
 4. Code Review
 
 Assume we have initial code that does not meet the quality standards.
@@ -193,7 +194,7 @@ dotnet husky run --name spelling
 
 Now, assume the developer ignores the warning and somehow commits the code and creates a pull request. The CI/CD pipeline will run the same checks, and if any of the checks fail, the pipeline will fail.
 
-💡 I configured parallel execution for code quality gateways, which helps to receive feedback faster.
+💡 I configured parallel execution for code quality gates, which helps to receive feedback faster.
 
 ![ci-cd-failed](./assets/ci-cd-failed.png)
 
