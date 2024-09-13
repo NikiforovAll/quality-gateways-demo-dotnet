@@ -1,0 +1,36 @@
+name: build
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+env:
+  DOTNET_VERSION: "8.0.*" # The .NET SDK version to use
+
+jobs:
+  build:
+    name: build-${{matrix.os}}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install Tools
+        run: dotnet tool restore
+
+      - name: Quality Gates
+        run: dotnet husky run
+
+      - name: Install Dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore

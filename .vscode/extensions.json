@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "sonarsource.sonarlint-vscode",
+        "csharpier.csharpier-vscode"
+    ]
+}
