@@ -7,7 +7,6 @@ on:
 
 env:
   DOTNET_VERSION: "8.0.*" # The .NET SDK version to use
-  DOTNET_CLI_TELEMETRY_OPTOUT
 
 jobs:
   setup:
