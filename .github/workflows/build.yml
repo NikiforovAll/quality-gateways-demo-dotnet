@@ -85,7 +85,7 @@ jobs:
   build:
     name: build
     runs-on: ubuntu-latest
-    needs: [format, style, analyzers, spelling]
+    needs: [format, style, analyzers]
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET Core
