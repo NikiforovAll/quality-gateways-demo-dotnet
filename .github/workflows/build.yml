@@ -30,6 +30,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install Tools
+        run: dotnet tool restore
+
+      - name: Configure Husky
+        run: dotnet husky install
       - name: Run Format Task
         run: dotnet husky run --name format
 
@@ -38,6 +49,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install Tools
+        run: dotnet tool restore
+
+      - name: Configure Husky
+        run: dotnet husky install
       - name: Run Style Task
         run: dotnet husky run --name style
 
@@ -46,6 +68,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install Tools
+        run: dotnet tool restore
+
+      - name: Configure Husky
+        run: dotnet husky install
       - name: Run Analyzers Task
         run: dotnet husky run --name analyzers
 
@@ -54,6 +87,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install Tools
+        run: dotnet tool restore
+
+      - name: Configure Husky
+        run: dotnet husky install
       - name: Run Spelling Task
         run: dotnet husky run --name spelling
 
@@ -62,6 +106,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [format, style, analyzers, spelling]
     steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
       - name: Install Dependencies
         run: dotnet restore
 
